@@ -10,7 +10,10 @@ magic:
 	# extract
 	# ext2spice
 
-simulation.spice: pre.spice $(NAME).spice post.spice
+%.scaled.spice : %.spice
+	./rescale.py $^ > $@
+
+simulation.spice: pre.spice $(NAME).scaled.spice post.spice
 	# build a simulation with pre and post.spice
 	cat $^ > $@
 
@@ -21,4 +24,4 @@ sim: simulation.spice
 clean:
 	rm -f $(NAME).spice model.spice $(NAME).ext
 
-phony: clean simulation.spice
+phony: clean simulation.spice $(NAME).spice $(NAME).scaled.spice

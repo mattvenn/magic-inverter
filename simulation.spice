@@ -1,18 +1,16 @@
+* this file edited to remove everything not in tt lib
 .lib "./sky130_fd_pr/models/sky130.lib.spice" tt
-
-* .include ./sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8.pm3.spice
-* .include ./sky130_fd_pr/cells/pfet_01v8_hvt/sky130_fd_pr__pfet_01v8_hvt.pm3.spice
 
 * instantiate the inverter
 Xinv Y A VPWR VGND VGND VPWR sky130_fd_sc_hd__inv_1
 
+* rescaled with ./rescale.py
 * SPICE3 file created from sky130_fd_sc_hd__inv_1.ext - technology: sky130A
 
-.option scale=5000u
 
 .subckt sky130_fd_sc_hd__inv_1 Y A VPB VNB VGND VPWR
-X0 Y A VGND VNB sky130_fd_pr__nfet_01v8 w=130 l=30
-X1 Y A VPWR VPB sky130_fd_pr__pfet_01v8_hvt w=200 l=30
+X0 Y A VGND VNB sky130_fd_pr__nfet_01v8 w=0.65 l=0.15
+X1 Y A VPWR VPB sky130_fd_pr__pfet_01v8_hvt w=1.00 l=0.15
 .ends
 * set gnd and power
 Vgnd VGND 0 0
