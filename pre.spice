@@ -1,0 +1,3 @@
+.include NMOS-180nm.lib
+.include PMOS-180nm.lib
+

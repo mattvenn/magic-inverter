@@ -1,0 +1,276 @@
+tech
+   min2 
+end
+
+version
+    version 0.0
+    description "my minimum tech file"
+end
+
+planes
+  well,w
+  active,a
+  metal1,m1
+end
+
+types
+  well  nwell,nw
+  well  pwell,pw
+  active  ntransistor,nfet
+  active  ptransistor,pfet
+  active  transistor,fet
+  active  ndiffusion,ndiff,green
+  active  pdiffusion,pdiff,brown
+  active  ndcontact,ndc
+  active  pdcontact,pdc
+  active  psubstratepcontact,pohmiccontact,poc,pwcontact,pwc,psc
+  active  nsubstratencontact,nohmiccontact,noc,nwcontact,nwc,nsc
+  active  polysilicon,red,poly,p
+  active  polycontact,pcontact,polycut,pc
+  active  psubstratepdiff,pohmicdiff,pod,ppdiff,ppd,psd
+  active  nsubstratendiff,nohmicdiff,nod,nndiff,nnd,nsd
+  metal1  metal1,m1,blue
+end
+
+contact
+pcontact poly metal1
+ndcontact ndiff metal1
+pdcontact pdiff metal1
+psc psd metal1
+nsc nsd metal1
+end
+
+styles
+ styletype  mos
+  nwell  12
+  pwell  13
+  metal1  20
+  nfet  6
+  nfet  7
+  pfet  8
+  pfet  9
+  ndiff  2
+  pdiff  4
+  ndc  2
+  ndc  20
+  ndc  32
+  pdc  4
+  pdc  20
+  pdc  32
+  nsc  3
+  nsc  20
+  nsc  32
+  psc  5
+  psc  20
+  psc  32
+  poly  1
+  pcontact  1
+  pcontact  20
+  pcontact  32
+  error_p   42
+  error_s   42
+  error_ps  42
+end
+
+compose
+end
+
+connect
+  nwell,nsc/a,nsd  nwell,nsc/a,nsd
+  pwell,psc/a,psd  pwell,psc/a,psd
+  m1,ndc/m1,nsc/m1,pdc/m1,psc/m1,pc/m1  m1,ndc/m1,nsc/m1,pdc/m1,psc/m1,pc/m1
+  ndiff,nsd,ndc/a,nsc/a,pdiff,psd,pdc/a,psc/a  ndiff,nsd,ndc/a,nsc/a,pdiff,psd,pdc/a,psc/a
+  poly,nfet,pfet,fet,pc/a  poly,nfet,pfet,fet,pc/a
+end
+
+cifoutput
+end
+
+cifinput
+end
+
+# mzrouter
+# end
+
+drc
+
+ width poly 2 \
+ "your poly width is < 2, so flagging DRC error "
+ 
+ overhang poly/a nfet,pfet,fet 3 \
+ "your poly extension over active is < 3, so flagging DRC error"  
+
+ overhang *ndiff/a nfet 3 \
+ "your ndiff extension over nfet is < 3, so flagging DRC error"
+
+ overhang *pdiff/a pfet 3 \
+ "your pdiff extension over pfet is < 3, so flagging DRC error"
+
+ spacing nfet,pfet ndc/a,pdc/a 1 touching_illegal \
+ "your transistor to ndiff and pdiff contacts is < 1 and touching is illegal, so flagging DRC error"
+
+ width (ndc,pdc)/m1 4 \
+ "your ndiff contact and pdiff contact width is < 4, so flagging DRC error"
+
+ width *m1 3 \
+ "your metal1 width is < 3, so flagging DRC error"
+
+ spacing *m1/m1 *m1/m1 3 touching_ok \
+ "your m1 to m1 spacing is < 3, so flagging DRC error"
+
+ spacing ndc/a,pdc/a,psc/a,nsc/a ndc/a,pdc/a,psc/a,nsc/a 2 touching_ok \
+ "your spacing between contacts is < 2, so flagging DRC error"
+
+ width ndiff,pdiff,pfet,nfet,ndc/a,nsc/a,pdc/a,psc/a 3 \
+ "your pdiff or ndiff width is < 3, so flagging DRC error"
+
+ spacing nfet,pfet nsc/a,psc/a 1 touching_illegal \
+ "your transistor to n-substrate and psubstrate contacts is < 1 and touching is illegal, so flagging DRC error"
+
+ spacing poly/a (*ndiff,*pdiff,*nsd,*psd)/a 1 corner_ok nfet,pfet \
+ "your poly spacing to diffusion is < 1, so flagging DRC error"
+ 
+##some more rules##
+ spacing poly,nfet,pfet,fet poly,nfet,pfet,fet 3 touching_ok \
+ "your poly spacing < 3, so flagging DRC error"
+
+###more contact rules
+ spacing nsc/m1 pdc/m1 2 touching_illegal \
+ "your nsc to pdc spacing is < 2, so flagging DRC error"
+
+ spacing psc/m1 ndc/m1 2 touching_illegal \
+ "your psc to ndc spacing is < 2, so flagging DRC error"
+
+ width nwell 12 \
+ "your nwell width is < 12, so flagging DRC error"
+
+ spacing nwell nwell 6 touching_ok \
+ "your nwell to nwell spacing in < 6, so flagging DRC error"
+
+ width pwell 12 \
+ "your pwell width is < 12, so flagging DRC error"
+
+ spacing pwell pwell 6 touching_ok \
+ "your pwell to pwell spacing in < 6, so flagging DRC error"
+
+ surround (*nsd)/a nwell 2 absence_ok \
+ "your nwell overlap of n-contact is < 2, so flagging DRC error"
+
+ surround (*psd)/a pwell 2 absence_ok \
+ "your pwell overlap of p-contact is < 2, so flagging DRC error"
+
+ surround (*pdiff,pfet)/a nwell 5 absence_ok \
+ "your nwell overlap of pdiffusion is < 5, so flagging DRC error"
+
+ surround (*ndiff,nfet)/a pwell 5 absence_ok \
+ "your pwell overlap of ndffusion is < 5, so flagging DRC error"
+
+ spacing (*ndiff,nfet)/a (*pdiff,pfet)/a 8 touching_illegal \
+ "your ndiff to pdiff spacing is < 8, so flagging DRC error"
+
+ spacing *nsd *psd 4 touching_illegal \
+ "your n-type spacing to p-type < 4, so flagging DRC error"
+
+ spacing ndiff,nfet,nsd,pdiff,pfet,psd,ndc/a,nsc/a,pdc/a,psc/a,nfet,pfet ndc/a,pdc/a,psc/a,nsc/a 4 touching_ok \
+ "your active area or diffusion spacing to active or diffusion contact is < 4, so flagging DRC error"
+
+ spacing ndiff,nfet,nsd,pdiff,pfet,psd,ndc/a,nsc/a,pdc/a,psc/a ndiff,nfet,nsd,pdiff,pfet,psd,ndc/a,nsc/a,pdc/a,psc/a 3 touching_ok \
+ "your spacing between diffusion is < 3, so flagging DRC error"
+
+end
+
+extract
+style lambda=0.09
+lambda 9
+step 100
+sidehalo 4
+
+ substrate (*psd)/active,(pwell)/well,space/well well
+
+ planeorder well 0
+ planeorder active 1
+ planeorder metal1 2
+
+# All resistance and contact values are in milliohms per square
+
+ resist (*ndiff,nsd)/active 8000
+ resist (*pdiff,*psd)/active 8000
+ resist (nwell)/well 900000
+ resist (pwell)/well 900000
+
+ resist (*poly,pfet,nfet)/active 7400
+ resist (*m1)/metal1 80
+
+ contact ndc,nsc 10000
+ contact pdc,psc 10000
+ contact pc 10000
+
+#-------------------------------------------------------------------------
+# Parasitic capacitance values
+#-------------------------------------------------------------------------
+# This uses the new "default" definitions that determine the intervening
+# planes from the planeorder stack, take care of the reflexive sideoverlap
+# definitions, and generally clean up the section and make it more readable.
+#-------------------------------------------------------------------------
+# Remember that device capacitances to substrate are taken care of by the
+# models.  Thus, active and poly definitions ignore all "fet" types.
+# However, fet types are included when computing parasitic capacitance to
+# poly and active from layers above them.
+#-------------------------------------------------------------------------
+
+# All perimeter capacitance values are in aF/um
+# All area capacitance values are in aF/um^2
+# (determined by the value of "lambda" and "units" above)
+
+#n-well
+ defaultareacap     nwell well 0.502
+
+#n-active
+ defaultareacap     *ndiff,*nsd active 15.163
+ defaultperimeter   *ndiff,*nsd active 39.600
+
+#p-active
+ defaultareacap     *pdiff,*psd active 15.204
+ defaultperimeter   *pdiff,*psd active 31.680
+
+#poly
+ defaultsidewall    *poly active      12.714
+ defaultareacap     *poly active well  0.786
+ defaultperimeter   *poly active well  2.316
+
+#metal1
+ defaultsidewall    *m1 metal1      23.087
+ defaultareacap     *m1 metal1 well  0.308
+ defaultperimeter   *m1 metal1 well  2.070
+
+#metal1->diff
+ defaultoverlap     *m1 metal1 *ndiff,*nsd,*pdiff,*psd active 0.405
+ defaultsideoverlap *m1 metal1 *ndiff,*nsd,*pdiff,*psd active 2.070
+
+#metal1->poly
+ defaultoverlap     *m1 metal1 *poly,pfet,nfet active 0.510
+ defaultsideoverlap *m1 metal1 *poly,pfet,nfet active 6.300
+
+ device mosfet pmos pfet pdiff,pdc nwell error 50 46
+ device mosfet nmos nfet ndiff,ndc pwell,space/well error 50 46
+
+ fetresis  pfet linear 40000
+ fetresis  pfet saturation 40000
+ fetresis  nfet linear 9000
+ fetresis  nfet saturation 9000
+
+variant *
+
+end
+
+# wiring
+# end
+
+# router
+# end
+
+# plowing
+# end
+
+# plot
+# end
