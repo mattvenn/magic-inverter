@@ -5,12 +5,13 @@ all: sim
 magic:
 	# for rcfile to work PDKPATH must be set correctly
 	magic -rcfile sky130A.magicrc $(NAME).mag
+	# now in the command window type:
+	# extract
+	# ext2spice
 
-%.spice: %.ext
-	# convert extracted netlist from magic into spice model
-	ext2spice $^ -o model.spice -p $(PDKPATH)
+simulation.spice: $(NAME).spice
 	# build a simulation with pre and post.spice
-	cat pre.spice model.spice post.spice > $@
+	cat pre.spice inverter.spice post.spice > $@
 
 sim: $(NAME).spice
 	# run the simulation
