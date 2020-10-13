@@ -21,7 +21,7 @@ to run the simulation
 
 # Questions / Todo
 
-* where does the spice model come from?
+* where does the spice model come from? https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_pr
 * how to extract as before? ext2spice on cli doesn't work anymore (have to do from inside magic)
 * how to get something I can simulate?
 
