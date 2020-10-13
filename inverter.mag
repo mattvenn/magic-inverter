@@ -1,5 +1,5 @@
 magic
-tech min2
+tech sky130A
 timestamp 1592753818
 << nwell >>
 rect 31 -1 57 27
@@ -33,7 +33,7 @@ rect 43 -1 46 6
 rect 35 -4 46 -1
 rect 43 -7 46 -4
 rect 43 -20 46 -17
-<< polycontact >>
+<< polycont >>
 rect 31 -4 35 0
 << metal1 >>
 rect 32 20 34 24
