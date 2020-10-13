@@ -2,6 +2,10 @@ NAME=inverter
 
 all: sim
 
+magic:
+	# for rcfile to work PDKPATH must be set correctly
+	magic -rcfile sky130A.magicrc $(NAME).mag
+
 %.spice: %.ext
 	# convert extracted netlist from magic into spice model
 	ext2spice $^ -o model.spice
