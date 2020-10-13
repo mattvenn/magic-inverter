@@ -18,6 +18,6 @@ sim: $(NAME).spice
 	ngspice $^
 
 clean:
-	rm -f $(NAME).spice model.spice
+	rm -f $(NAME).spice model.spice $(NAME).ext
 
 phony: clean
