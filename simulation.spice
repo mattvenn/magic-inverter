@@ -1,5 +1,11 @@
-.include ./sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8.pm3.spice
-.include ./sky130_fd_pr/cells/pfet_01v8_hvt/sky130_fd_pr__pfet_01v8_hvt.pm3.spice
+.lib "./sky130_fd_pr/models/sky130.lib.spice" tt
+
+* .include ./sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8.pm3.spice
+* .include ./sky130_fd_pr/cells/pfet_01v8_hvt/sky130_fd_pr__pfet_01v8_hvt.pm3.spice
+
+* instantiate the inverter
+Xinv Y A VPWR VGND VGND VPWR sky130_fd_sc_hd__inv_1
+
 * SPICE3 file created from sky130_fd_sc_hd__inv_1.ext - technology: sky130A
 
 .option scale=5000u
@@ -8,12 +14,17 @@
 X0 Y A VGND VNB sky130_fd_pr__nfet_01v8 w=130 l=30
 X1 Y A VPWR VPB sky130_fd_pr__pfet_01v8_hvt w=200 l=30
 .ends
-Vdd VPWR VGND DC 1.8
+* set gnd and power
+Vgnd VGND 0 0
+Vdd VPWR VGND 1.8
+
+* create pulse
 Vin A VGND pulse(0 1.8 1p 10p 10p 1n 2n)
 .tran 10e-12 2e-09 0e-00
+
 .control
 run
 plot A Y
 .endc
-.end
 
+.end

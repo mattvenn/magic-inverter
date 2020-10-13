@@ -1,2 +1,8 @@
-.include ./sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8.pm3.spice
-.include ./sky130_fd_pr/cells/pfet_01v8_hvt/sky130_fd_pr__pfet_01v8_hvt.pm3.spice
+.lib "./sky130_fd_pr/models/sky130.lib.spice" tt
+
+* .include ./sky130_fd_pr/cells/nfet_01v8/sky130_fd_pr__nfet_01v8.pm3.spice
+* .include ./sky130_fd_pr/cells/pfet_01v8_hvt/sky130_fd_pr__pfet_01v8_hvt.pm3.spice
+
+* instantiate the inverter
+Xinv Y A VPWR VGND VGND VPWR sky130_fd_sc_hd__inv_1
+

@@ -10,9 +10,9 @@ magic:
 	# extract
 	# ext2spice
 
-simulation.spice: $(NAME).spice
+simulation.spice: pre.spice $(NAME).spice post.spice
 	# build a simulation with pre and post.spice
-	cat pre.spice inverter.spice post.spice > $@
+	cat $^ > $@
 
 sim: simulation.spice
 	# run the simulation
@@ -21,4 +21,4 @@ sim: simulation.spice
 clean:
 	rm -f $(NAME).spice model.spice $(NAME).ext
 
-phony: clean
+phony: clean simulation.spice
