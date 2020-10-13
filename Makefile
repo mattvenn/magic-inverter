@@ -13,7 +13,7 @@ simulation.spice: $(NAME).spice
 	# build a simulation with pre and post.spice
 	cat pre.spice inverter.spice post.spice > $@
 
-sim: $(NAME).spice
+sim: simulation.spice
 	# run the simulation
 	ngspice $^
 
