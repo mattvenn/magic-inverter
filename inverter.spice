@@ -1,22 +1,9 @@
-.include NMOS-180nm.lib
-.include PMOS-180nm.lib
+* NGSPICE file created from inverter.ext - technology: sky130A
 
-* SPICE3 file created from inverter.ext - technology: min2
 
-.option scale=0.09u
+* Top level circuit inverter
 
-M1000 out in gnd gnd nfet w=10 l=3
-+  ad=50 pd=30 as=50 ps=30
-M1001 out in vdd vdd pfet w=10 l=3
-+  ad=60 pd=32 as=50 ps=30
-C0 out gnd 3.26fF
-C1 vdd gnd 4.39fF
-Vdd vdd gnd 1.8
-Vin in gnd pulse(0 1.8 1p 10p 10p 1n 2n)
-.tran 10e-12 2e-09 0e-00
-.control
-run
-plot in out
-.endc
+X0 Y A VPWR NWELL sky130_fd_pr__pfet_01v8 w=1e+06u l=150000u
+X1 Y A VGND VSUBS sky130_fd_pr__nfet_01v8 w=650000u l=150000u
 .end
 
