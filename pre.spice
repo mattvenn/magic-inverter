@@ -3,5 +3,6 @@ Inverter Simulation
 .lib "./sky130_fd_pr/models/sky130.lib.spice" tt
 
 * instantiate the inverter
-Xinv Y A VPWR VGND VGND VPWR sky130_fd_sc_hd__inv_1
+Xinv Y A VPWR VGND VGND VPWR inverter
 
+.subckt inverter Y A NWELL VSUBS VGND VPWR

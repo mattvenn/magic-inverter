@@ -1,3 +1,5 @@
+.ends
+
 * set gnd and power
 Vgnd VGND 0 0
 Vdd VPWR VGND 1.8

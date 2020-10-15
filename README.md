@@ -7,8 +7,8 @@ to create the extracted netlist:
 then in the command window type:
 
     extract
-    ext2spice subcircuit top on
     ext2spice lvs
+    ext2spice subcircuit top on
     ext2spice
     quit
 
@@ -41,7 +41,7 @@ to run the simulation
 
 * what - what is selected
 * ext - extract circuit from the design
-* ext2spice lvs ; ext2spice - setup ext2spice with the lvs settings (compatible with sky130), then create the spice file to be used for simulation
+* ext2spice lvs ; ext2spice subcircuit top on; ext2spice - setup ext2spice with the lvs settings (compatible with sky130), set export inside a subcircuit, then create the spice file to be used for simulation
 * label NAME - create a label attached to whatever is selected
 * measure - measures the box
 * move up 10 - moves the selection up by 10
@@ -59,5 +59,5 @@ to run the simulation
 
 # Attribution
 
-min2.tech and the lib files come from [VLSI course](https://www.udemy.com/course/vlsi-academy-custom-layout/) by Kunal Ghosh
+Previous min2.tech and the lib files come from [VLSI course](https://www.udemy.com/course/vlsi-academy-custom-layout/) by Kunal Ghosh
 
