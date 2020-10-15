@@ -1,22 +1,28 @@
-# Inverter demo with magic
+# Inverter demo with magic and Skywater 130 PDK
 
-to create the extracted netlist:
+clone this repo recusively to get the spice models from https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_pr
+You will also need to get your $PDK_ROOT & $PDKPATH set correct for the .magicrc file to work and load the tech file. See https://github.com/efabless/openlane/#setting-up-the-pdk-skywater-pdk for details.
 
-    magic inverter.mag
+To see a video of me drawing this inverter see https://www.youtube.com/watch?v=IQ_DcWT_cbc
 
-then in the command window type:
+# Instructions
+
+Start magic with the correct rcfile and load inverter.mag:
+
+    make magic
+
+To create the spice simulation file, in the command window type:
 
     extract
     ext2spice lvs
-    ext2spice subcircuit top on
     ext2spice
     quit
 
-then in the shell type 
+Then in the shell type 
 
-    make
+    make sim
 
-to run the simulation
+to run the simulation. This uses the pre.spice and post.spice files to build a complete simulation that can be run with ngspice.
 
 ![inverter](inverter.png)
 
@@ -47,17 +53,6 @@ to run the simulation
 * move up 10 - moves the selection up by 10
 * copy up 10 - copies selection up by 10
 
-# PDK
-
-* pdk install instructions here
-
-# Questions / Todo
-
-* where does the spice model come from? https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_pr
-* how to extract as before? ext2spice on cli doesn't work anymore (have to do from inside magic)
-* how to get something I can simulate?
-
 # Attribution
 
 Previous min2.tech and the lib files come from [VLSI course](https://www.udemy.com/course/vlsi-academy-custom-layout/) by Kunal Ghosh
-
