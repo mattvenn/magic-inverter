@@ -1,3 +1,4 @@
+Inverter Simulation
 * this file edited to remove everything not in tt lib
 .lib "./sky130_fd_pr/models/sky130.lib.spice" tt
 
