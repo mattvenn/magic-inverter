@@ -1,17 +1,16 @@
+Inverter simulation
+
 * this file edited to remove everything not in tt lib
 .lib "./sky130_fd_pr/models/sky130.lib.spice" tt
 
 * instantiate the inverter
-Xinv Y A VPWR VGND VGND VPWR sky130_fd_sc_hd__inv_1
+Xinv Y A VPWR VGND VGND VPWR inverter4
 
-* rescaled with ./rescale.py
-* SPICE3 file created from sky130_fd_sc_hd__inv_1.ext - technology: sky130A
-
-
-.subckt sky130_fd_sc_hd__inv_1 Y A VPB VNB VGND VPWR
-X0 Y A VGND VNB sky130_fd_pr__nfet_01v8 w=0.65 l=0.15
-X1 Y A VPWR VPB sky130_fd_pr__pfet_01v8_hvt w=1.00 l=0.15
+.subckt inverter4 Y A NWELL VSUBS VGND VPWR
+X0 Y A VPWR NWELL sky130_fd_pr__pfet_01v8 w=1e+06u l=150000u
+X1 Y A VGND VSUBS sky130_fd_pr__nfet_01v8 w=650000u l=150000u
 .ends
+
 * set gnd and power
 Vgnd VGND 0 0
 Vdd VPWR VGND 1.8

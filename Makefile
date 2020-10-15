@@ -5,15 +5,13 @@ all: sim
 magic:
 	# for rcfile to work PDKPATH must be set correctly
 #	magic -rcfile sky130A.magicrc $(NAME).mag
-	magic -rcfile sky130A.magicrc /home/matt/work/asic-workshop/pdks/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_1.gds
+	magic -rcfile sky130A.magicrc $(PDK_ROOT)/skywater-pdk/libraries/sky130_fd_sc_hd/latest/cells/inv/sky130_fd_sc_hd__inv_1.gds
 	# now in the command window type:
 	# extract
+	# ext2spice lvs
 	# ext2spice
 
-%.scaled.spice : %.spice
-	./rescale.py $^ > $@
-
-simulation.spice: pre.spice $(NAME).scaled.spice post.spice
+simulation.spice: pre.spice $(NAME).spice post.spice
 	# build a simulation with pre and post.spice
 	cat $^ > $@
 
@@ -22,6 +20,6 @@ sim: simulation.spice
 	ngspice $^
 
 clean:
-	rm -f $(NAME).spice model.spice $(NAME).ext
+	rm -f $(NAME).spice model.spice $(NAME).ext $(NAME).scaled.spice
 
-phony: clean simulation.spice $(NAME).spice $(NAME).scaled.spice
+phony: clean
