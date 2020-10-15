@@ -1,8 +1,9 @@
-* SPICE3 file created from sky130_fd_sc_hd__inv_1.ext - technology: sky130A
+* NGSPICE file created from inverter4.ext - technology: sky130A
 
-.option scale=5000u
 
-.subckt sky130_fd_sc_hd__inv_1 Y A VPB VNB VGND VPWR
-X0 Y A VGND VNB sky130_fd_pr__nfet_01v8 w=130 l=30
-X1 Y A VPWR VPB sky130_fd_pr__pfet_01v8_hvt w=200 l=30
-.ends
+* Top level circuit inverter4
+
+X0 Y A VPWR NWELL sky130_fd_pr__pfet_01v8 w=1e+06u l=150000u
+X1 Y A VGND VSUBS sky130_fd_pr__nfet_01v8 w=650000u l=150000u
+.end
+
