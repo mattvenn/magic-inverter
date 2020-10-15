@@ -1,0 +1,3 @@
+[submodule "sky130_fd_pr"]
+	path = sky130_fd_pr
+	url = https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_pr
