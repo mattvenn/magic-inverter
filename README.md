@@ -1,6 +1,7 @@
 # Inverter demo with magic and Skywater 130 PDK
 
 clone this repo recusively to get the spice models from https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_pr
+
 You will also need to get your $PDK_ROOT & $PDKPATH set correct for the .magicrc file to work and load the tech file. See https://github.com/efabless/openlane/#setting-up-the-pdk-skywater-pdk for details.
 
 To see a video of me drawing this inverter see https://www.youtube.com/watch?v=IQ_DcWT_cbc
