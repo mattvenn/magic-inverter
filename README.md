@@ -19,7 +19,15 @@ To create the spice simulation file, in the command window type:
     ext2spice
     quit
 
-Then in the shell type 
+To get the capacitance parasitics for a more accurate simulation:
+
+    extract
+    ext2spice lvs
+    ext2spice cthresh 0
+    ext2spice
+    quit
+
+Then in the shell type:
 
     make sim
 
