@@ -48,7 +48,7 @@ Vclk CLK VGND pulse(0 1.8 1n 50p 50p 1n 2n)
 * output goes low
 *Vd D VGND pulse(1.8 0 942p 50p 50p 2n 2n)
 * output goes high
-Vd D VGND pulse(1.8 0 943p 50p 50p 2n 2n)
+Vd D VGND pulse(1.8 0 DELAYp 50p 50p 2n 2n)
 
 .tran 10e-12 2e-09 0e-00
 
@@ -56,7 +56,9 @@ Vd D VGND pulse(1.8 0 943p 50p 50p 2n 2n)
 run
 set color0 = white
 set color1 = black
-plot Q D CLK
+set hcopypscolor = 0
+hardcopy pss/PLOT.ps Q D CLK ylimit -0.5 2.5
+quit
 .endc
 
 .end

@@ -23,7 +23,16 @@ sim: simulation.spice
 	# run the simulation
 	ngspice $^
 
-clean:
-	rm -f $(NAME).spice model.spice $(NAME).ext
+sims:
+	python3 sequence.py
 
-phony: clean
+png:
+	\ls pss/ | while read ps ; do convert pss/$$ps pngs/$$ps.png ; done
+
+animation.gif: pngs/*
+	convert -delay 1 pngs/*.png $@
+
+clean:
+	rm -f $(NAME).spice model.spice $(NAME).ext pngs/* spices/* pss/* animation.gif
+
+phony: clean png
