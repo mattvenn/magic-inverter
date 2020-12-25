@@ -1,4 +1,4 @@
-NAME=sky130_fd_sc_hd__inv_1
+NAME=sky130_fd_sc_hd__dfrtp_1
 
 all: sim
 

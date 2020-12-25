@@ -1,3 +1,15 @@
+# Sky130 notes
+
+list of cells:
+
+https://antmicro-skywater-pdk-docs.readthedocs.io/en/test-submodules-in-rtd/contents/libraries/sky130_fd_sc_hd/README.html
+
+d flop
+inv reset
+d input
+
+https://antmicro-skywater-pdk-docs.readthedocs.io/en/test-submodules-in-rtd/contents/libraries/sky130_fd_sc_hd/cells/dfrtp/README.html
+
 # Inverter demo with magic and Skywater 130 PDK
 
 clone this repo recusively to get the spice models from https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_pr
