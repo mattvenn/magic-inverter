@@ -1,4 +1,4 @@
-NAME=inverter
+NAME=sky130_fd_sc_hd__inv_1
 
 all: sim
 
@@ -15,7 +15,7 @@ standardcell:
 
 simulation.spice: pre.spice $(NAME).spice post.spice
     # magic puts an extra .end after extract, so remove it
-	sed -i -e 's/.end//' $(NAME).spice
+	#sed -i -e 's/.end//' $(NAME).spice
 	# build a simulation with pre and post.spice
 	cat $^ > $@
 
