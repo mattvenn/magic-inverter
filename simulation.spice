@@ -40,25 +40,28 @@ X27 a_639_47# a_761_289# a_805_47# VNB sky130_fd_pr__nfet_01v8 w=420000u l=15000
 Vgnd VGND 0 0
 Vdd VPWR VGND 1.8
 Vreset RESET_B VGND 1.8
-* Vd D VGND 1.8
 
-* create pulse
-Vclk CLK VGND pulse(0 1.8 1n 150p 150p 1n 3n)
-
-* output goes low
-*Vd D VGND pulse(1.8 0 942p 50p 50p 2n 2n)
-* output goes high
-Vd D VGND pulse(1.8 0 DELAYf 150p 150p 2n 10n)
-
-.tran 10e-12 4e-09 0e-00
+* create clock & d pulses
+Vclk CLK VGND pulse(0 1.8 1.5n 150p 150p 1n 3n)
+Vd D VGND pulse(0 1.8 0p 150p 150p 500p 10n)
 
 .control
-run
-set color0 = white
-set color1 = black
-set hcopypscolor = 0
-hardcopy pss/PLOT.ps Q D CLK ylimit -0.5 2.5
-quit
+    set color0 = white
+    set color1 = black
+    set hcopypscolor = 0
+    let run = 0
+    let delay = 500p
+    dowhile delay < 2000p
+        echo run "$&run" "$&delay"
+        alter @Vd[pulse]=[ 0 1.8 $&delay 150p 150p 500p 10n ]
+        tran 10e-12 4e-09 0e-00
+        if run > 0
+            hardcopy pss/$&run Q D CLK ylimit -0.5 2.5
+        end
+        let delay = delay + 5p
+        let run = run + 1
+    end
+    quit
 .endc
 
 .end
