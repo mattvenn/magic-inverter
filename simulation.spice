@@ -43,14 +43,14 @@ Vreset RESET_B VGND 1.8
 * Vd D VGND 1.8
 
 * create pulse
-Vclk CLK VGND pulse(0 1.8 1n 50p 50p 1n 2n)
+Vclk CLK VGND pulse(0 1.8 1n 150p 150p 1n 3n)
 
 * output goes low
 *Vd D VGND pulse(1.8 0 942p 50p 50p 2n 2n)
 * output goes high
-Vd D VGND pulse(1.8 0 DELAYp 50p 50p 2n 2n)
+Vd D VGND pulse(1.8 0 DELAYf 150p 150p 2n 10n)
 
-.tran 10e-12 2e-09 0e-00
+.tran 10e-12 4e-09 0e-00
 
 .control
 run

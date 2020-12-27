@@ -1,6 +1,6 @@
 import os
 
-for delay in range(900, 1000, 1):
+for delay in range(925000, 937000, 100):
     print(delay)
     plot = "%04d" % delay
 
