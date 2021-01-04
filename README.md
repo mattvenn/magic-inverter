@@ -33,6 +33,8 @@ Then in the shell type:
 
 to run the simulation. This uses the pre.spice and post.spice files to build a complete simulation that can be run with ngspice.
 
+The simulation is quite slow to run because there are a lot of models to include. If you want to speed things up you can comment out (add a * at the start of the line) every line from 55 onewards in sky130_fd_pr/models/sky130.lib.spice
+
 ![inverter](inverter.png)
 
 ![simulation](sim.png)
