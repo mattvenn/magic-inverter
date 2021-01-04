@@ -8,6 +8,7 @@ magic:
 	# now in the command window type:
 	# extract
 	# ext2spice lvs
+	# ext2spice cthresh 0
 	# ext2spice
 
 standardcell:
