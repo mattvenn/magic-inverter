@@ -7,6 +7,8 @@ Simulation setup to look at metastability in setup time in a d flop:
 * q output,
 * clock input, keep clock pulse constant
 
+![animation](animation.gif)
+
 # Setup
 
 clone this repo recusively to get the spice models from https://foss-eda-tools.googlesource.com/skywater-pdk/libs/sky130_fd_pr
