@@ -3,7 +3,20 @@
 
 * Top level circuit inverter
 
-X0 Y A VPWR NWELL sky130_fd_pr__pfet_01v8 w=1e+06u l=150000u
-X1 Y A VGND VSUBS sky130_fd_pr__nfet_01v8 w=650000u l=150000u
+X0 Y A VPWR NWELL sky130_fd_pr__pfet_01v8 ad=5.5e+11p pd=3.1e+06u as=5e+11p ps=3e+06u w=1e+06u l=150000u
+X1 Y A VGND VSUBS sky130_fd_pr__nfet_01v8 ad=3.575e+11p pd=2.4e+06u as=3.25e+11p ps=2.3e+06u w=650000u l=150000u
+C0 VGND A 0.06fF
+C1 Y VGND 0.06fF
+C2 VGND VPWR 0.01fF
+C3 Y A 0.03fF
+C4 Y NWELL 0.00fF
+C5 A VPWR 0.05fF
+C6 VPWR NWELL 0.05fF
+C7 Y VPWR 0.16fF
+C8 VGND VSUBS 0.62fF
+C9 Y VSUBS 0.22fF
+C10 VPWR VSUBS 0.55fF
+C11 A VSUBS 0.32fF
+C12 NWELL VSUBS 0.63fF
 
 
